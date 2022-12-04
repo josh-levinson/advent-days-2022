@@ -21,6 +21,7 @@ def game_result_value(result:)
 end
 
 input_file = File.open('day2/input.txt')
+# input_file = File.open('day2/basic_input.txt')
 
 file_data = input_file.readlines.map(&:chomp)
 
@@ -28,10 +29,13 @@ score = 0
 
 file_data.each do |line|
   line_values = line.split(' ')
-  opponent = encrypted_opponent_values[line_values[0]] 
-  player = encrypted_player_values[line_values[1]]
+  opponent_choice = line_values[0]
+  player_choice = line_values[1]
 
-  game_result = rock_paper_scissors[opponent][player]
+  opponent = encrypted_opponent_values[opponent_choice] 
+  player = encrypted_player_values[player_choice]
+
+  game_result = rock_paper_scissors[player][opponent]
   
   score = score + game_result_value(result: game_result)
   score = score + play_values[player]
